@@ -1,4 +1,4 @@
-var stage = {w:1200, h:600 }
+var stage = {w:1000, h:600 }
 		var ball = {obj:null, x:0, y:0, vx:5, vy:5, w:20, h:20}
 		$(document).ready(function(){
 			ball.obj = $("#ball1");
