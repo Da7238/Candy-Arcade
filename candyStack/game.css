@@ -10,4 +10,7 @@ canvas {
 
 body {
     background-color: #000000;
+    background-image: url("imgs/candy.png");
+    background-position: bottom left; 
+    background-repeat: no-repeat;
 }

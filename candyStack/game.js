@@ -12,7 +12,7 @@ let factorChange;
 
 const YSPEED = 5;
 const HEIGHT = 50;
-const STACK_WIDTH = 150;
+const STACK_WIDTH = 100;
 const STACK_HEIGHT = 200;
 const COLORS = ['#52006A', '#CD113B', '#FF7600', '52006A'];
 
