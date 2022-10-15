@@ -1,0 +1,35 @@
+body {
+  background-color: #52006A;
+  color: #FFA900;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+    width: 400px;
+    height: 600px;
+    background-color: #CD113B;
+    position: relative;
+    font-size: 100px;
+    text-align: center;
+}
+  
+.doodler {
+    width: 85px;
+    height: 85px;
+    background-image: url('assets/candyJackson.png');
+    background-size: cover;
+    position: absolute;
+}
+  
+.platform {
+    width: 100px;
+    height: 18px;
+    background-image: url('assets/platform.jpg');
+    background-color: black;
+    background-size: cover;
+    position: absolute;
+}
