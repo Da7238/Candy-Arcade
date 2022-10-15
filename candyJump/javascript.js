@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     const doodler = document.createElement('div')
+    const scoreEl = document.querySelector('.SCORE span');
     let isGameOver = false
-    let speed = 3
     let platformCount = 5
     let platforms = []
     let score = 0
     let doodlerLeftSpace = 50
-    let startPoint = 150
+    let startPoint = 125
     let doodlerBottomSpace = startPoint
-    const gravity = 0.9
     let upTimerId
     let downTimerId
     let isJumping = true
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         this.left = Math.random() * 315
         this.bottom = newPlatBottom
         this.visual = document.createElement('div')
-  
         const visual = this.visual
         visual.classList.add('platform')
         visual.style.left = this.left + 'px'
@@ -34,12 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   
     function createPlatforms() {
-      for(let i =0; i < platformCount; i++) {
+      for(let i = 0; i < platformCount; i++) {
         let platGap = 600 / platformCount
         let newPlatBottom = 100 + i * platGap
         let newPlatform = new Platform (newPlatBottom)
         platforms.push(newPlatform)
-        console.log(platforms)
       }
     }
   
@@ -49,13 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             platform.bottom -= 4
             let visual = platform.visual
             visual.style.bottom = platform.bottom + 'px'
-  
             if(platform.bottom < 10) {
               let firstPlatform = platforms[0].visual
               firstPlatform.classList.remove('platform')
               platforms.shift()
-              console.log(platforms)
               score++
+              scoreEl.textContent = score;
               var newPlatform = new Platform(600)
               platforms.push(newPlatform)
             }
@@ -89,10 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             (doodlerLeftSpace <= (platform.left + 85)) &&
             !isJumping
             ) {
-              console.log('tick')
               startPoint = doodlerBottomSpace
               jump()
-              console.log('start', startPoint)
               isJumping = true
             }
         })
@@ -104,12 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(downTimerId)
       isJumping = true
       upTimerId = setInterval(function () {
-        console.log(startPoint)
-        console.log('1', doodlerBottomSpace)
         doodlerBottomSpace += 20
         doodler.style.bottom = doodlerBottomSpace + 'px'
-        console.log('2',doodlerBottomSpace)
-        console.log('s',startPoint)
         if (doodlerBottomSpace > (startPoint + 200)) {
           fall()
           isJumping = false
@@ -125,8 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isGoingLeft = true
       leftTimerId = setInterval(function () {
           if (doodlerLeftSpace >= 0) {
-            console.log('going left')
-            doodlerLeftSpace -=5
+             doodlerLeftSpace -= 5
              doodler.style.left = doodlerLeftSpace + 'px'
           } else moveRight()
       },20)
@@ -139,9 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       isGoingRight = true
       rightTimerId = setInterval(function () {
-        //changed to 313 to fit doodle image
         if (doodlerLeftSpace <= 313) {
-          console.log('going right')
           doodlerLeftSpace +=5
           doodler.style.left = doodlerLeftSpace + 'px'
         } else moveLeft()
@@ -170,10 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameOver() {
       isGameOver = true
       while (grid.firstChild) {
-        console.log('remove')
         grid.removeChild(grid.firstChild)
       }
-      grid.innerHTML = score
+      grid.innerHTML = "GAME OVER"
       clearInterval(upTimerId)
       clearInterval(downTimerId)
       clearInterval(leftTimerId)
