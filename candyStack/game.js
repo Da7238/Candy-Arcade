@@ -7,13 +7,12 @@ let gameState;
 let score;
 let lives;
 let hoverSpeed;
-let dropSpeed;
 let changeInY;
 let factorChange;
 
 const YSPEED = 5;
 const HEIGHT = 50;
-const STACK_WIDTH = 200;
+const STACK_WIDTH = 150;
 const STACK_HEIGHT = 200;
 
 // Represents the boxes in the Stacking Game
@@ -43,7 +42,6 @@ function initialize() {
     score = 0;
     lives = 3;
     hoverSpeed = 2;
-    dropSpeed = 5;
     changeInY = 0;
     factorChange = 0;
     newBox();
@@ -56,7 +54,7 @@ function newBox() {
     stack[current] = {
       x: 200,
       y: 300,
-      width: 200
+      width: STACK_WIDTH
     };
   }
 
@@ -87,7 +85,7 @@ function game() {
         }
         // box is being dropped
         if (gameState == 'dropping') {
-            stack[current].y = stack[current].y - 3;
+            stack[current].y = stack[current].y - YSPEED;
             if (stack[current].y == stack[current - 1].y + HEIGHT) {
                 gameState = 'waitingToDrop';
                 let difference = stack[current].x - stack[current - 1].x;
@@ -103,7 +101,7 @@ function game() {
                     hoverSpeed--;
                 }
                 current++;
-                scrollCounter = height;
+                scrollCounter = HEIGHT;
                 newBox();
             }
 
