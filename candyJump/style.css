@@ -1,6 +1,7 @@
 body {
   background-color: #52006A;
   color: #FFA900;
+  font-family: Arial;
   overflow: hidden;
   display: flex;
   flex-direction: column;

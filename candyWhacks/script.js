@@ -1,6 +1,6 @@
 const mouths = [...document.querySelectorAll('.mouth')];
-const pointsEl = document.querySelector('.points span');
-let points = 0;
+const scoreEl = document.querySelector('.score span');
+let score = 0;
 
 function run(){
     const i = Math.floor(Math.random() * mouths.length);
@@ -12,8 +12,8 @@ function run(){
     img.src = 'imgs/candy.png';
 
     img.addEventListener('click', () => {
-        points += Math.round(getRandomNumRange(1,10));
-        pointsEl.textContent = points;
+        score += Math.round(getRandomNumRange(1,10));
+        scoreEl.textContent = score;
         img.src = 'imgs/candy-hit.png';
         clearTimeout(timer);
         setTimeout(() => {
@@ -47,8 +47,8 @@ function startTimer(duration, display) {
       if (--timer < 0) {
         alert("game over");
         timer = duration;
-        points = 0;
-        pointsEl.textContent = points;
+        score = 0;
+        scoreEl.textContent = score;
       }
     }, 1000);
   }
